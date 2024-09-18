@@ -1,0 +1,29 @@
+>> Spring Boot
+Spring Boot is an extension of the Spring framework that simplifies the process of building production-ready applications. It provides a set of conventions and defaults to streamline configuration and setup, allowing developers to focus on building features rather than dealing with boilerplate code.
+
+Key Features :
+Auto-Configuration: Automatically configures your application based on the dependencies present on the classpath, reducing the need for manual configuration.
+
+Standalone Applications: Spring Boot applications can run as standalone Java applications, simplifying deployment.
+
+Embedded Servers: It includes embedded servers like Tomcat, Jetty, or Undertow, which means you don't need to deploy your application to an external server.
+
+Production-Ready Features: Built-in features like health checks, metrics, and externalized configuration make it easier to create robust applications ready for production.
+
+Microservices Ready: Spring Boot is a popular choice for building microservices due to its lightweight nature and easy integration with Spring Cloud for distributed systems.
+
+Convention Over Configuration: It follows a convention-over-configuration approach, minimizing the amount of configuration required.
+
+>> Maven
+Maven is a build automation and project management tool primarily used for Java projects. It simplifies the process of managing project dependencies, building projects, and deploying applications. Maven need project coordinates to uniquely identify a project which are GAV (Group ID- name of group or company, Artifact ID- name of the project, Version)
+
+Key Features :
+Project Object Model (POM): Maven uses a POM file (pom.xml) to manage project configuration, including dependencies, plugins, and project metadata.
+
+Dependency Management: It allows you to declare project dependencies in the POM file, automatically downloading the required libraries from repositories (like Maven Central) and managing their versions.
+
+Build Lifecycle: Maven has a defined lifecycle with phases (like compile, test, package, and install), which simplifies the build process by providing a consistent way to manage project builds.
+
+Plugins: Maven’s functionality can be extended using plugins. These can handle tasks such as compiling code, running tests, generating documentation, and deploying applications.
+
+Convention over Configuration: Maven follows a set of conventions that minimize the need for custom configuration, making it easier to manage projects.
