@@ -27,3 +27,29 @@ Build Lifecycle: Maven has a defined lifecycle with phases (like compile, test, 
 Plugins: Maven’s functionality can be extended using plugins. These can handle tasks such as compiling code, running tests, generating documentation, and deploying applications.
 
 Convention over Configuration: Maven follows a set of conventions that minimize the need for custom configuration, making it easier to manage projects.
+
+>> Spring Boot Starters
+Spring Boot starters are a set of convenient dependency descriptors you can include in your application to easily add functionality or simply we can say, a collection of maven dependencies and it also make sure you have compatible versions. They simplify the process of adding new features by bundling commonly used libraries and their configurations.
+
+Benefits of Using Starters:
+Simplified Dependency Management: You don’t have to manage versions for each library.
+Quick Setup: Quickly get started with pre-configured libraries.
+Best Practices: Bundles commonly used libraries that follow Spring’s conventions.
+
+>> Spring Boot Starter Parent 
+Spring Boot Starter Parent is a special starter that provides a foundational structure for your application. It helps simplify dependency management and project configuration. It is a special starter that provides Maven defaults like encoding, java version etc.
+
+Key Features:
+Dependency Management: It manages versions of commonly used dependencies, so you don’t have to specify versions in your pom.xml. This ensures compatibility between different libraries.
+Default Plugins: It provides default Maven plugins, which simplifies the build process. It configures the spring-boot-maven-plugin for you.
+Configuration: It sets up sensible defaults for Spring Boot applications, making it easier to get started.
+
+>> Spring Boot Actuator
+Spring Boot Actuator is an essential tool for monitoring and managing your Spring Boot applications. It exposes various endpoints that give insights into the application's health, metrics, environment, and more.
+
+Key Features:
+Health Checks: Provides an endpoint to check the health of your application, including database connectivity, service availability, and other custom health indicators.
+Metrics: Gathers application metrics, such as memory usage, garbage collection, and request statistics, which can be accessed via an endpoint.
+Environment Information: Exposes information about the application’s environment, including configuration properties and active profiles.
+Application Info: Provides details about the application, such as version and description, which can be customized.
+Custom Endpoints: You can create your own endpoints to expose additional functionality.
