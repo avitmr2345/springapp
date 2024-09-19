@@ -11,4 +11,8 @@ public class NewRestController {
         return "Hello World";
     }
 
+    @GetMapping("/working")
+    public String checkWorking() {
+        return "It is working";
+    }
 }
