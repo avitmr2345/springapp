@@ -1,3 +1,4 @@
+									I
 >> Spring Boot
 Spring Boot is an extension of the Spring framework that simplifies the process of building production-ready applications. It provides a set of conventions and defaults to streamline configuration and setup, allowing developers to focus on building features rather than dealing with boilerplate code.
 
@@ -61,4 +62,51 @@ Firstly we will create the jar file for our application using mvnw package comma
 
 >> Spring Boot properties
 Spring Boot have 1000+ properties. They are divided into the following categories-
-Core, Web, Security, Data, Actuator, Integration, DevTools, Testing
+Core, Web, Security, Data, Actuator, Integration, DevTools, Testing.
+
+									II
+>> IoC
+Inversion of Control means that the control of object creation and management is transferred from the application code to the Spring container. This contrasts with traditional programming, where the application directly creates and manages its dependencies.
+
+Spring Container
+The Spring container is responsible for instantiating, configuring, and managing the objects (beans) in a Spring application. When requested, it determines which object to provide based on the configuration. Functions of the Spring Container:
+Object Creation and Management: Uses IoC to create and manage objects.
+Dependency Injection: Injects dependencies into objects as needed.
+
+There are different types of containers in Spring:
+BeanFactory: The simplest container, which provides basic support for DI.
+ApplicationContext: A more advanced container that builds on BeanFactory, adding features such as event propagation, declarative mechanisms to create a bean, and internationalization.
+
+Configuring the Spring Container
+There are three main approaches to configure the Spring container: XML Configuration, Java Annotations, Java Source Code
+
+>> Dependency Injection
+In Spring, it allows objects to receive their dependencies from an external source (the Spring container), rather than creating them internally. This promotes loose coupling and easier testing.
+
+Types of Dependency Injection
+Constructor Injection:
+Dependencies are provided through a class constructor.
+Ensures that the class is always in a valid state.
+Use this when you have required dependicies.
+
+Setter Injection:
+Dependencies are provided through setter methods after the object is constructed.
+Use this when you have optional dependencies.
+If dependency is not provided, your app can provide reasonable default logic.
+
+Spring Autowiring
+A feature in Spring that automatically injects dependencies.
+Spring looks for a class that matches the required type (either a class or an interface).
+
+How Autowiring Works:
+Spring scans for components or class annotated with @Component.
+It checks if there are any implementations of the required interface.
+If a match is found, Spring automatically injects that implementation.
+
+@Component annotation marks the class as a Spring Bean. A Spring Bean is just a regular Java class that is managed by Spring. It also make the bean available for dependency injection. @Autowired tells Spring to inject a dependency.
+
+Development process for Constructor Injection-
+1. Define the dependency interface and class
+2. Create Rest controller
+3. Create a constructor for injection
+4. Add @GetMapping
