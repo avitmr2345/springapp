@@ -53,3 +53,12 @@ Metrics: Gathers application metrics, such as memory usage, garbage collection, 
 Environment Information: Exposes information about the application’s environment, including configuration properties and active profiles.
 Application Info: Provides details about the application, such as version and description, which can be customized.
 Custom Endpoints: You can create your own endpoints to expose additional functionality.
+
+>> Running Spring Boot from command line
+Firstly we will create the jar file for our application using mvnw package command and then use one of the below method.
+1. java -jar myapp.jar
+2. mvnw spring-boot:run
+
+>> Spring Boot properties
+Spring Boot have 1000+ properties. They are divided into the following categories-
+Core, Web, Security, Data, Actuator, Integration, DevTools, Testing
