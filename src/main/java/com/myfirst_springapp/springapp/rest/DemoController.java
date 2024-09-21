@@ -1,7 +1,6 @@
 package com.myfirst_springapp.springapp.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.myfirst_springapp.springapp.Coach;
@@ -17,6 +16,7 @@ public class DemoController {
 
     @Autowired
     public void setCoach(Coach theCoach) {
+        System.out.println("In constructor: " + getClass().getSimpleName());
         myCoach = theCoach;
     }
 
