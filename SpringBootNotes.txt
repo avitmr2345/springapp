@@ -130,8 +130,19 @@ If we want to also scan the components in other directory then we have to mentio
 private Coach myCoach;
 But don't use this because it makes the code harder to Unit test.
 
->> Qualifiers
+>> Qualifier
 If we have multiple implementation of the Coach interface then Spring will get confused to choose the bean to implement.
 So we can use @Qualifier annotation and give bean id:trackCoach which is same as classname but first letter lowercase, like this-
 public DemoController(@Qualifier("trackCoach") Coach theCoach) {}; //same for the setter injection before the Coach theCoach
 
+>> Primary
+Alternative of Qualifier in which we specify the primary coach which will get implemented. If we use both Primary and Qualifier annotaion then the Qualifier annotation have higher priority.
+
+>> Lazy Initialization
+By default, when your application starts, all beans are initialized, @Component etc. Spring will create an instance of each and make them available.
+So, instead of creating all beans up front, we can specify lazy initialization.
+A bean will only be initailized when it is needed for DI, or it is explicitly requested.
+
+To set the global configuration for lazy initialization-
+spring.main.lazy-initialization=true
+This will make all beans lazy including DemoController and once we access REST endpoint /dailyworkout spring will determine dependencies for DemoController. Then for dependency resolution spring creates instance of implentaion class first and then creates instance of DemoController and injects the implementation class.
