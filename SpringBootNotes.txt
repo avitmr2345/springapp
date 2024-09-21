@@ -110,3 +110,28 @@ Development process for Constructor Injection-
 2. Create Rest controller
 3. Create a constructor for injection
 4. Add @GetMapping
+
+>> Component Scanning
+By default, Spring Boot starts component scanning from same package as your main Spring Boot Application and also scans sub packages. It will not scan outside the main application directory which is in my case is com.myfirst_springapp.springapp .
+If we want to also scan the components in other directory then we have to mention them explicitly like this-
+@SpringBootApplication(
+	scanBasePackages={"com.myfirst_springapp.springapp",
+			  "com.xxxx.xxx",
+			  "com.xx.xxxxx"})
+@SpringBootApplication is composed of @EnableAutoConfiguration, @ComponentScan and @Configuration which enables auto-configuration, component scanning and able to register extra beans with @Bean or import other configuration classes.
+
+>> Development process for Setter Injection-
+1. Create setter method in your class for injection
+2. Configure the dependency injection with @Autowired annotation
+
+>> Development process for Field Injection-
+1. Configure the dependency injection with @Autowired annotation
+@Autowired
+private Coach myCoach;
+But don't use this because it makes the code harder to Unit test.
+
+>> Qualifiers
+If we have multiple implementation of the Coach interface then Spring will get confused to choose the bean to implement.
+So we can use @Qualifier annotation and give bean id:trackCoach which is same as classname but first letter lowercase, like this-
+public DemoController(@Qualifier("trackCoach") Coach theCoach) {}; //same for the setter injection before the Coach theCoach
+
