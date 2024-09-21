@@ -16,7 +16,7 @@ public class DemoController {
     // }
 
     @Autowired
-    public void setCoach(@Qualifier ("trackCoach") Coach theCoach) {
+    public void setCoach(Coach theCoach) {
         myCoach = theCoach;
     }
 

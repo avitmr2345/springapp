@@ -1,8 +1,10 @@
 package com.myfirst_springapp.springapp;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
+@Primary
 public class TennisCoach implements Coach {
 
     @Override
