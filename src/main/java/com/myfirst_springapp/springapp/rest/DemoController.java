@@ -9,8 +9,13 @@ import com.myfirst_springapp.springapp.Coach;
 public class DemoController {
     private Coach myCoach;
 
+    // @Autowired
+    // public DemoController(Coach theCoach) {
+    // myCoach = theCoach;
+    // }
+
     @Autowired
-    public DemoController(Coach theCoach) {
+    public void setCoach(Coach theCoach) {
         myCoach = theCoach;
     }
 
@@ -18,5 +23,5 @@ public class DemoController {
     public String getDailyWorkout() {
         return myCoach.getDailyWorkout();
     }
-    
+
 }
