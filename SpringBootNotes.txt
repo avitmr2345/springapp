@@ -146,3 +146,16 @@ A bean will only be initailized when it is needed for DI, or it is explicitly re
 To set the global configuration for lazy initialization-
 spring.main.lazy-initialization=true
 This will make all beans lazy including DemoController and once we access REST endpoint /dailyworkout spring will determine dependencies for DemoController. Then for dependency resolution spring creates instance of implentaion class first and then creates instance of DemoController and injects the implementation class.
+
+>> Bean scope & Bean Lifecycle
+Scope refers to the lifecycle of a bean. Default scope in Spring  is singleton i.e. Spring Container creates only one instance of the bean. We can change it to prototype in which we can create a new bean instance for each request. For "prototype" scoped beans, Spring does not call the destroy method. Prototype beans are lazy by default. There is no need to use the @Lazy annotation for prototype scopes beans.
+
+Lifecycle-
+Container started, Bean instantiated, Dependencies injected, Internal Spring Processing, My Custom init method which is defined by @PostConstruct, Bean Ready to use, Container shutdown, My Custom destroy method defined by @PreDestroy.
+
+>> Configuring Beans with Java Source Code
+Development Process -
+1. Create @Configuration class
+2. Define @Bean method to configure the bean
+3. Inject the bean into our controller
+The default bean id is the method name but we can change it using like this @Bean("name") and inject name in our controller.
