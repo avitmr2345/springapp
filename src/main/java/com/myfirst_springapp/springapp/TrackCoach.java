@@ -1,10 +1,8 @@
 package com.myfirst_springapp.springapp;
 
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 @Component
-@Lazy
 public class TrackCoach implements Coach {
 
     public TrackCoach() {
