@@ -1,4 +1,5 @@
-									I
+							  Spring Boot Quick Start
+
 >> Spring Boot
 Spring Boot is an extension of the Spring framework that simplifies the process of building production-ready applications. It provides a set of conventions and defaults to streamline configuration and setup, allowing developers to focus on building features rather than dealing with boilerplate code.
 
@@ -64,7 +65,8 @@ Firstly we will create the jar file for our application using mvnw package comma
 Spring Boot have 1000+ properties. They are divided into the following categories-
 Core, Web, Security, Data, Actuator, Integration, DevTools, Testing.
 
-									II
+								Spring Core
+
 >> IoC
 Inversion of Control means that the control of object creation and management is transferred from the application code to the Spring container. This contrasts with traditional programming, where the application directly creates and manages its dependencies.
 
@@ -159,3 +161,29 @@ Development Process -
 2. Define @Bean method to configure the bean
 3. Inject the bean into our controller
 The default bean id is the method name but we can change it using like this @Bean("name") and inject name in our controller.
+
+							   Hibernate JPA CRUD
+
+>> Hibernate
+A framework for persisting/saving and retrieving Java objects in a database. We can also say it connects your Java app to a database for fetching and storing data. It is a vendor implementation of JPA Spec.
+It handles all of low-level SQL and provides the Object-to-Relational Mapping(ORM).
+In ORM, the developer defines mapping between Java class and database table.
+
+JPA
+Jakarta Persistence API is the standard API for ORM. It is only a specification which defines a set of interfaces and it requires an implementation to be usable.
+By having a standard API, we are not locked to one vendor's implementation like Hibernate or EclipseLink because it maintains portable, flexible code by coding to JPA spec (interfaces).
+
+Saving a Java object with JPA-
+Student student = new Student("Avish", "Tomar");
+entityManager.persist(student);
+where,
+entityManager is a special JPA helper object
+
+Retrieving a Java object with JPA-
+int id = 1;
+Student student = entityManager.find(Student.class, id);
+
+Querying for Java objects-
+TypedQuery<Student> theQuery = entityManager.createQuery("from Student", student.class);
+List<Student> student = theQuery.getResultList();
+Returns a list of Student objects from the database.
