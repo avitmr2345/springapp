@@ -187,3 +187,14 @@ Querying for Java objects-
 TypedQuery<Student> theQuery = entityManager.createQuery("from Student", student.class);
 List<Student> student = theQuery.getResultList();
 Returns a list of Student objects from the database.
+
+Hiberanate/JPA uses JDBC for all database communications. Hibernate/JPA is just another layer of abstraction on top of JDBC. Hibernate does low-level work for you and after that it all goes through the standard JDBC API in the background.
+
+>> Setting Up Spring Boot project
+In Spring Boot, Hibernate is the default implementation of JPA.
+EntityManager is main component for creating queries etc. and it is from JPA.
+Add dependencies in your Spring app during initialization- MySQLDriver, SpringDateJPA.
+Spring Boot will automatically configure your data source for you. Based on entries from Maven pom file, it will add JDBC driver and Spring Data (ORM).
+Based of configs, Spring Boot will automatically create the beans: DataSource, EntityManager. You can then inject these into your app, for example your DAO.
+
+CommandLineRunner is from the Spring framework and it's a hook that allow to execute code after Spring Beans have been loaded.
