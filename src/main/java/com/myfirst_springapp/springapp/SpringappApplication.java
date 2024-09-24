@@ -18,6 +18,7 @@ public class SpringappApplication {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
 			createStudent(studentDAO);
+			readStudent(studentDAO);
 		};
 	}
 
@@ -31,4 +32,10 @@ public class SpringappApplication {
 		System.out.println("Student saved with generated id: " + tempStudent.getId());
 	}
 
+	private void readStudent(StudentDAO studentDAO) {
+		int id = 1;
+		System.out.println("Retrieving student with id 1");
+		Student myStudent = studentDAO.findById(id);
+		System.out.println("Found the student: " + myStudent);
+	}
 }
