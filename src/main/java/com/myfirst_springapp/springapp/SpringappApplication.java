@@ -1,5 +1,6 @@
 package com.myfirst_springapp.springapp;
 
+import java.util.List;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,8 +18,10 @@ public class SpringappApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
-			createStudent(studentDAO);
-			readStudent(studentDAO);
+			// createStudent(studentDAO);
+			// readStudent(studentDAO);
+			// queryForStudents(studentDAO);
+			queryForStudentsByLastName(studentDAO);
 		};
 	}
 
@@ -37,5 +40,19 @@ public class SpringappApplication {
 		System.out.println("Retrieving student with id 1");
 		Student myStudent = studentDAO.findById(id);
 		System.out.println("Found the student: " + myStudent);
+	}
+
+	private void queryForStudents(StudentDAO studentDAO) {
+		List<Student> theStudents = studentDAO.findAll();
+		for (Student tempStudent : theStudents) {
+			System.out.println(tempStudent);
+		}
+	}
+
+	private void queryForStudentsByLastName(StudentDAO studentDAO) {
+		List<Student> theStudents = studentDAO.findByLastName("Tomar");
+		for (Student tempStudent : theStudents) {
+			System.out.println(tempStudent);
+		}
 	}
 }
