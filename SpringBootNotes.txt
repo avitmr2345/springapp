@@ -195,6 +195,38 @@ In Spring Boot, Hibernate is the default implementation of JPA.
 EntityManager is main component for creating queries etc. and it is from JPA.
 Add dependencies in your Spring app during initialization- MySQLDriver, SpringDateJPA.
 Spring Boot will automatically configure your data source for you. Based on entries from Maven pom file, it will add JDBC driver and Spring Data (ORM).
-Based of configs, Spring Boot will automatically create the beans: DataSource, EntityManager. You can then inject these into your app, for example your DAO.
+Based of configs, Spring Boot will automatically create the beans: DataSource, EntityManager. You can then inject these into your app, for example your DAO.          
 
 CommandLineRunner is from the Spring framework and it's a hook that allow to execute code after Spring Beans have been loaded.
+
+>> JPA development process
+1. Annotate Java Class
+2. Develop Java Code to perform database operation
+
+Entity class is a Java class that is mapped to a database table. It must be annotated with @Entity. Must have a public or protected no-argument constructor and can have other constructors.
+
+>> Saving a Java object
+Data Access Object(DAO) is responsible for interfacing with database.
+Our app will communicate with DAO and DAO will talk to database.
+DAO method- save(), findById(), findAll(), findByLastName(), update(), delete(), deleteAll()
+
+DAO needs a JPA Entity Manager which is the main component for saving/retrieving entities.
+JPA Entity Manager needs a Data Source. Data source defines database connection info. They both are automatically created by Spring Boot based on the file: application.properties (JDBC URL, user id, password).
+We autowire/inject the JPA Entity Manager into our Student DAO
+
+@Transactional annotation automatically begin and end a transaction for your JPA code. It handles transaction management.
+@Repository annotation is applied to DAO implementaion. It will automatically register the DAO implementation using component scanning and provides translation of JDBC related exception.
+
+Steps:
+1. Define DAO interface
+2. Define DAO implementation and inject entity manager
+3. Update main app
+
+>> Querying objects with JPA
+JPA uses JPQL for retrieving objects and it is based on entity name and entity fields.
+TypedQuery<Student> theQuery = entityManager.createQuery("FROM Student WHERE lastName='Tomar'", Student.class);
+List<Student> student = theQuery.getResultList();
+where, Student is the name of JPA Entity, lastName is field of JPA entity.
+
+JPQL named parameters are prefixed with a colon ':' and it acts as a placeholder.
+
