@@ -208,7 +208,6 @@ Entity class is a Java class that is mapped to a database table. It must be anno
 >> Saving a Java object
 Data Access Object(DAO) is responsible for interfacing with database.
 Our app will communicate with DAO and DAO will talk to database.
-DAO method- save(), findById(), findAll(), findByLastName(), update(), delete(), deleteAll()
 
 DAO needs a JPA Entity Manager which is the main component for saving/retrieving entities.
 JPA Entity Manager needs a Data Source. Data source defines database connection info. They both are automatically created by Spring Boot based on the file: application.properties (JDBC URL, user id, password).
@@ -226,7 +225,15 @@ Steps:
 JPA uses JPQL for retrieving objects and it is based on entity name and entity fields.
 TypedQuery<Student> theQuery = entityManager.createQuery("FROM Student WHERE lastName='Tomar'", Student.class);
 List<Student> student = theQuery.getResultList();
-where, Student is the name of JPA Entity, lastName is field of JPA entity.
+where, Student is the name of JPA Entity(the class name), lastName is field of JPA entity.
 
 JPQL named parameters are prefixed with a colon ':' and it acts as a placeholder.
 
+>> Updating objects with JPA
+Updating last name for all students-
+int numOfRowUpdated = entityManager.createQuery("UPDATE Student SET lastName ='Tomar'").executeUpdate();
+
+>> Create DB table using Java code
+Note: It is not recommended for production level project but it is useful for DB integration testing.
+JPA/Hibernate provides an option to automatically create database tables using annotation provided on the Java code in entity/Student.java file.
+spring.jpa.hibernate.ddl-auto=create
