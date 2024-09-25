@@ -23,7 +23,8 @@ public class SpringappApplication {
 			// queryForStudents(studentDAO);
 			// queryForStudentsByLastName(studentDAO);
 			// updateStudent(studentDAO);
-			deleteStudent(studentDAO);
+			// deleteStudent(studentDAO);
+			deleteAllStudents(studentDAO);
 		};
 	}
 
@@ -75,5 +76,11 @@ public class SpringappApplication {
 		System.out.println("Deleting student with id: " + studentId);
 		studentDAO.delete(studentId);
 		System.out.println("Deleted");
+	}
+
+	private void deleteAllStudents(StudentDAO studentDAO) {
+		System.out.println("Deleting all students");
+		int numOfRowsDeleted = studentDAO.deleteAll();
+		System.out.println("Delete row count: " + numOfRowsDeleted);
 	}
 }
