@@ -21,7 +21,8 @@ public class SpringappApplication {
 			// createStudent(studentDAO);
 			// readStudent(studentDAO);
 			// queryForStudents(studentDAO);
-			queryForStudentsByLastName(studentDAO);
+			// queryForStudentsByLastName(studentDAO);
+			updateStudent(studentDAO);
 		};
 	}
 
@@ -54,5 +55,17 @@ public class SpringappApplication {
 		for (Student tempStudent : theStudents) {
 			System.out.println(tempStudent);
 		}
+	}
+
+	private void updateStudent(StudentDAO studentDAO) {
+		int studentId = 1;
+		System.out.println("Getting student with id: " + studentId);
+		Student myStudent = studentDAO.findById(studentId);
+
+		System.out.println("Updating student..."); 
+		myStudent.setFirstName("John");
+		studentDAO.update(myStudent);
+
+		System.out.println("Updated student: " + myStudent);
 	}
 }
