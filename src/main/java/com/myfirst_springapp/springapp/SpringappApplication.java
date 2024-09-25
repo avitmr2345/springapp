@@ -22,7 +22,8 @@ public class SpringappApplication {
 			// readStudent(studentDAO);
 			// queryForStudents(studentDAO);
 			// queryForStudentsByLastName(studentDAO);
-			updateStudent(studentDAO);
+			// updateStudent(studentDAO);
+			deleteStudent(studentDAO);
 		};
 	}
 
@@ -62,10 +63,17 @@ public class SpringappApplication {
 		System.out.println("Getting student with id: " + studentId);
 		Student myStudent = studentDAO.findById(studentId);
 
-		System.out.println("Updating student..."); 
-		myStudent.setFirstName("John");
+		System.out.println("Updating student...");
+		myStudent.setFirstName("Avi");
 		studentDAO.update(myStudent);
 
 		System.out.println("Updated student: " + myStudent);
+	}
+
+	private void deleteStudent(StudentDAO studentDAO) {
+		int studentId = 3;
+		System.out.println("Deleting student with id: " + studentId);
+		studentDAO.delete(studentId);
+		System.out.println("Deleted");
 	}
 }
