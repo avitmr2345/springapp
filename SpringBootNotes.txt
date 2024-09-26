@@ -237,3 +237,21 @@ int numOfRowUpdated = entityManager.createQuery("UPDATE Student SET lastName ='T
 Note: It is not recommended for production level project but it is useful for DB integration testing.
 JPA/Hibernate provides an option to automatically create database tables using annotation provided on the Java code in entity/Student.java file.
 spring.jpa.hibernate.ddl-auto=create
+
+							       REST CRUD APIs
+
+>> JSON Data Binding
+Data Binding is the process of converting JSON data to a Java POJO. Spring uses the Jackson Project behind the scenes which handles data binding between JSON and POJO. By default, Jackson will call appropriate gette/setter method.
+When converting JSON to POJO, Jackson will call setter methods on POJO and when converting POJO to JSON, Jackson will call getter methods on POJO.
+When building Spring REST app, it will automatically handle Jackson Integration. JSON data being passed to REST controller is converted to POJO. Java object being returned from REST controller is converted to JSON.
+
+>> Exception Handling
+Development process:
+1. Create a custom error response class (basically entity class)
+2. Create a custom exception class
+3. Update REST service to throw exception
+4. Add an exception handler method using @Exception Handler
+
+Exception handler will return a ResponseEntity which is a wrapper for the HTTP response object. ResponseEntity provide fine-grained control to specify: HTTP status code, HTTP headers and Response body.
+public ResponseEntity<EmployeeErrorResponse> handleException(EmployeeNotFoundException exception)
+where, EmployeeErrorResponse is the type of response body and EmployeeNotFoundException is the exception type to handle.
