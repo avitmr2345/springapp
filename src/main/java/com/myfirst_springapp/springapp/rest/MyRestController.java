@@ -55,4 +55,14 @@ public class MyRestController {
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler
+    public ResponseEntity<EmployeeErrorResponse> handleException(Exception exception) {
+        EmployeeErrorResponse error = new EmployeeErrorResponse();
+
+        error.setStatus(HttpStatus.BAD_REQUEST.value());
+        error.setMessage("Bad Request: Please provide an integer");
+        error.setTimeStamp(System.currentTimeMillis());
+
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
 }
