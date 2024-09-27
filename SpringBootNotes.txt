@@ -255,3 +255,58 @@ Development process:
 Exception handler will return a ResponseEntity which is a wrapper for the HTTP response object. ResponseEntity provide fine-grained control to specify: HTTP status code, HTTP headers and Response body.
 public ResponseEntity<EmployeeErrorResponse> handleException(EmployeeNotFoundException exception)
 where, EmployeeErrorResponse is the type of response body and EmployeeNotFoundException is the exception type to handle.
+
+>> Global Exception Handling
+@ControllerAdvice which is similar to an interceptor/filter.
+We use this annotation to pre-process requests to controllers and post-process responses to handle exceptions.
+
+>> Service Layer
+The service layer sits between Rest controller and DAO(which help accessing data from database).
+It provides intermediate layer for custom business logic.
+It also helps integrate data from mulitple sources(DAO/repositories). For eg. we can have Employee DAO, Skills DAO and Payroll DAO and Service will handle the data from these sources, or we can say it provide controller with a single view of the data that we integrated from these multiple backend data sources.
+
+@Service annotation is applied to service implementations.
+Spring will automatically register the service implementation usign component scanning.
+
+Steps:
+1. Define Service interface
+2. Define Service implementation and inject the DAO.
+
+1. Create a folder in the main app called service. Create service interface in this file StudentService.java
+
+public interface StudentService {
+    List<Student> findAll();
+}
+
+2. Create implementation class of the interface in same folder called StudentServiceImpl.java
+@Service
+public class StudentServiceImpl implements StudentService {
+	private StudentDAO studentDAO;
+
+	@Autowired
+	public StudentServiceImpl(StudentDAO theStudentDAO) {
+		studentDAO = theStudentDAO;
+	}
+
+	@Override
+	public List<Student> findAll() {
+	return studentDAO.findAll();
+	}
+}
+
+I have created this in the main application file but if we implement this using Service then -
+Create a Rest controller StudentRestController.java
+@RestController
+@RequestMapping("/api")
+public class StudentRestController {
+	private StudentService studentService;
+
+	public StudentRestController(StudentService theStudentService) {
+	studentService = theStudentService;
+	}
+
+	@GetMapping("/students")
+	public List<Student> findAll() {
+		return studentService.findAll();
+	}
+}
