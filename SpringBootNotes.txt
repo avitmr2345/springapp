@@ -264,9 +264,11 @@ We use this annotation to pre-process requests to controllers and post-process r
 The service layer sits between Rest controller and DAO(which help accessing data from database).
 It provides intermediate layer for custom business logic.
 It also helps integrate data from mulitple sources(DAO/repositories). For eg. we can have Employee DAO, Skills DAO and Payroll DAO and Service will handle the data from these sources, or we can say it provide controller with a single view of the data that we integrated from these multiple backend data sources.
+We simply use this to delegate the calls from the service to the DAO. It is best practice to use service layer with DAO.
 
 @Service annotation is applied to service implementations.
 Spring will automatically register the service implementation usign component scanning.
+It's the service layer responsibility to manage transaction boundaries(@Transactional). So apply @Transactional on service methods and remove @Transactional from DAO methods.
 
 Steps:
 1. Define Service interface
@@ -301,6 +303,7 @@ Create a Rest controller StudentRestController.java
 public class StudentRestController {
 	private StudentService studentService;
 
+	@Autowired
 	public StudentRestController(StudentService theStudentService) {
 	studentService = theStudentService;
 	}
@@ -310,3 +313,40 @@ public class StudentRestController {
 		return studentService.findAll();
 	}
 }
+
+@PostMapping for post request and @RequestBody is to bind the JSON data to the Student object.
+@PostMapping("/students")
+public Student addStudent(@RequestBody Student theStudent) {
+	theStudent.setId(0);
+	Student dbStudent = studentService.save(theStudent);
+	return dbStudent;
+}
+
+>> Spring Data JPA
+Prior to this we have used the JPA API for DAO but we have to repeat code again for every new entity we create. So, we use Spring Data JPA to minimize the code for DAO.
+We just tell Spring that create a DAO and just plug in my entity type and primary key. Spring will give us CRUD implementation like findAll(), findById(), save(), deleteById() and others for free.
+Default endpoint is the entity name in lowercase with an extra "s" in end.
+Spring Data JPA provides the interface JpaRepository and it exposes methods (some by inheritance from parents). JpaRepository automatically provides @Transactioal functionality.
+It also provides some advanced features:
+Extending and adding custom queries with JPQL.
+Query Domain Specific Language(Query DSL).
+Defining custom methods(low-level coding).
+
+>> Spring Data REST
+Prior to this we have created REST API for each and every entity but we have to repeat the code for each new entity. So, we use Spring Data REST to minimize the code.
+We just tell Spring that create a REST API and use my existing JpaRepository and it gives all of the basic REST API CRUD implementation like GET, POST, PUT, DELETE for free.
+Spring Data REST leverages the existing JpaRepository. It scans our project for JpaRepository and expose REST API for each entity tupe for our JpaRepository.
+Spring Data REST endpoints are HATEOS compliant (Hypermedia as the Engine of Application State). Hypermedia-driven sites provide information to access REST interfaces. Think of it as meta-data for REST data. HATEOS uses Hypertext Application Language(HAL) data format.
+It also provides advanced features:
+Pagination, sorting and searching.
+Extending and adding custom queries with JPQL.
+Query DSL.
+
+>> Pagination and to expose the custom endpoint for JpaRepository-
+@RepositoryRestResource(path="members")
+public interface StudentRepository extends JpaRepository<Student, Integer> {
+
+}
+
+spring.data.rest.base-path=/magic-api
+spring.data.rest.default-page-size=3
