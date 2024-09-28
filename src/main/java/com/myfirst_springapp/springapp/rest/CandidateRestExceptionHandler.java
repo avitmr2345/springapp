@@ -5,14 +5,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.myfirst_springapp.springapp.entity.EmployeeErrorResponse;
+import com.myfirst_springapp.springapp.entity.CandidateErrorResponse;
 
 @ControllerAdvice
-public class EmployeeRestExceptionHandler {
+public class CandidateRestExceptionHandler {
 
     @ExceptionHandler
-    public ResponseEntity<EmployeeErrorResponse> handleException(EmployeeNotFoundException exception) {
-        EmployeeErrorResponse error = new EmployeeErrorResponse();
+    public ResponseEntity<CandidateErrorResponse> handleException(CandidateNotFoundException exception) {
+        CandidateErrorResponse error = new CandidateErrorResponse();
 
         error.setStatus(HttpStatus.NOT_FOUND.value());
         error.setMessage(exception.getMessage());
@@ -22,8 +22,8 @@ public class EmployeeRestExceptionHandler {
     }
 
     @ExceptionHandler
-    public ResponseEntity<EmployeeErrorResponse> handleException(Exception exception) {
-        EmployeeErrorResponse error = new EmployeeErrorResponse();
+    public ResponseEntity<CandidateErrorResponse> handleException(Exception exception) {
+        CandidateErrorResponse error = new CandidateErrorResponse();
 
         error.setStatus(HttpStatus.BAD_REQUEST.value());
         error.setMessage("Bad Request: Please provide an integer");

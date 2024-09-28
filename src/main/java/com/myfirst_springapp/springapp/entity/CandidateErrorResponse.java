@@ -1,15 +1,15 @@
 package com.myfirst_springapp.springapp.entity;
 
-public class EmployeeErrorResponse {
+public class CandidateErrorResponse {
     private int status;
     private String message;
     private long timeStamp;
 
-    public EmployeeErrorResponse() {
+    public CandidateErrorResponse() {
 
     }
 
-    public EmployeeErrorResponse(int status, String message, long timeStamp) {
+    public CandidateErrorResponse(int status, String message, long timeStamp) {
         this.status = status;
         this.message = message;
         this.timeStamp = timeStamp;

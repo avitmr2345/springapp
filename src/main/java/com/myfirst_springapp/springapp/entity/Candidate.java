@@ -1,14 +1,14 @@
 package com.myfirst_springapp.springapp.entity;
 
-public class Employee {
+public class Candidate {
     private String firstName;
     private String lastName;
 
-    public Employee() {
+    public Candidate() {
 
     }
 
-    public Employee(String firstName, String lastName) {
+    public Candidate(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
