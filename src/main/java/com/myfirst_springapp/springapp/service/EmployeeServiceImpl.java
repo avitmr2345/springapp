@@ -2,38 +2,46 @@ package com.myfirst_springapp.springapp.service;
 
 import java.util.List;
 
+import java.util.Optional;
 import org.springframework.stereotype.Service;
-import com.myfirst_springapp.springapp.dao.EmployeeDAO;
+import com.myfirst_springapp.springapp.dao.EmployeeRepository;
 import com.myfirst_springapp.springapp.entity.Employee;
-import jakarta.transaction.Transactional;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    private EmployeeDAO employeeDAO;
+    private EmployeeRepository employeeRepository;
 
-    public EmployeeServiceImpl(EmployeeDAO theEmployeeDAO) {
-        employeeDAO = theEmployeeDAO;
+    public EmployeeServiceImpl(EmployeeRepository theEmployeeRepository) {
+        employeeRepository = theEmployeeRepository;
     }
 
     @Override
     public List<Employee> findAll() {
-        return employeeDAO.findAll();
+        return employeeRepository.findAll();
     }
 
+    // Optional is used to check for nulls
     @Override
     public Employee findById(int theId) {
-        return employeeDAO.findById(theId);
+        Optional<Employee> result = employeeRepository.findById(theId);
+
+        Employee theEmployee = null;
+
+        if (result.isPresent())
+            theEmployee = result.get();
+        else
+            throw new RuntimeException("Did not found employee with id: " + theId);
+
+        return theEmployee;
     }
 
-    @Transactional
     @Override
     public Employee save(Employee theEmployee) {
-        return employeeDAO.save(theEmployee);
+        return employeeRepository.save(theEmployee);
     }
 
-    @Transactional
     @Override
     public void deleteById(int theId) {
-        employeeDAO.deleteById(theId);
+        employeeRepository.deleteById(theId);
     }
 }
