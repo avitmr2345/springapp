@@ -350,3 +350,46 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
 
 spring.data.rest.base-path=/magic-api
 spring.data.rest.default-page-size=3
+
+								REST API Security
+
+>> Spring Security Model
+Spring Security defines a framework for security implemented using Servlet filters in the background. Two methods of securing an app: declarative and programmatic.
+Servlet filters are used to pre-process/ post-process web requests. Servlet filters can route web requests based on security logic.
+Spring Security filters intercept the request to your resource or API endpoint and pre-process them and see if the user is authenticated and authorized or not. Spring Security will look at our application security configuration and also look at the user, passoword and roles.
+
+Declarative Security-
+Defines application's security constraints in configuration. It provides seperation of concerns between application code and security.
+
+Programmatic Security-
+Spring Security provides an API for custom application coding. Provides greater customization for specific app requirements.
+
+>> Basic configuration
+Development Process-
+1. Create Spring Security Configuration
+2. Add user, password and roles
+
+In spring security, passwords are stored using a specific format-
+{id}encodedPassword, where id is the encoding algorithm id like noop or bcrypt. The id tells Spring Security how the passwords are stored.
+
+>> Restricting URLs based on Roles
+requestMatchers(add HTTP method to match on, add path to match on).hasRole(give authorized role)	//hasAnyRole(give , delimited list)
+Eg. requestMatchers(HttpMehtod.GET, "magic-api/employees/**").hasRole()  // ** is to match on all sub-paths
+
+CSRF
+Spring Security can protect against CSRF attacks.
+Embed additional authentication data/token into all HTML forms. On subsequent requests, web app will verify token before processing. Primary use case is traditional web applications.
+When to use-
+Spring security team recommends to use CSRF protection for any normal browser web requests. Traditional web apps with HTML form to add/modify data.
+If building a REST API for non browser clients, you may want to disable CSRF protection. In general, not required for stateless REST APIs that use POST, PUT, DELETE and/or PATCH.
+
+>> JDBC database authentication with plain-text
+Spring Security can read user account info from the database. By default, you have to follow Spring Security's predefined table schemas 'users' and 'authorities'. If we follow these table schemas then Spring Security includes all of the JDBC code to actually read information from the database.
+The users table have username, password and enabled fields. The authorities table(it is same as roles) have username and authority fields.
+We can also customize the table schemas if you have custom tables specific to your project. You will be responsible for developing the code to access the data (JDBC, JPA/Hibernate etc).
+
+Development Process-
+Develop SQL script to set up database tables
+Add database support to POM file
+Create JDBC properties to access the MySQL database
+Update Spring Security Configuration to use JDBC.
