@@ -26,7 +26,7 @@ public class CandidateRestExceptionHandler {
         CandidateErrorResponse error = new CandidateErrorResponse();
 
         error.setStatus(HttpStatus.BAD_REQUEST.value());
-        error.setMessage("Bad Request: Please provide an integer");
+        error.setMessage(exception.getMessage());
         error.setTimeStamp(System.currentTimeMillis());
 
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
