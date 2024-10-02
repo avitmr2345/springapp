@@ -393,3 +393,13 @@ Develop SQL script to set up database tables
 Add database support to POM file
 Create JDBC properties to access the MySQL database
 Update Spring Security Configuration to use JDBC.
+
+>> JDBC database authentication with bcrypt encryption
+Bcrypt perform one-way encrypted hashing which means it can encrypt but not decrypt. Bcrypt adds a random salt to the password for additional protection. It also includes support to defeat brute force attacks.
+We can encrypt plain text password using bcrypt with a website utility(www.luv2code.com/generate-bcrypt-password) or write Java code to perform the encryption.
+
+Development process-
+Run SQL script that contains encrypted passwords to modify DDL for password field, length should be 68 where {bcrypt} and encodedPass contains 8 and 60 chars.
+
+Login process-
+Retrieve password from DB from the user. Read the encoding algo id {bcrypt etc}. In case of bcrypt, encrypt plaintext password from login form(using salt from DB password). Compare password from login form with password from DB. If there is a match login otherwise do not login.
