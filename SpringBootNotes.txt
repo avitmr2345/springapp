@@ -403,3 +403,23 @@ Run SQL script that contains encrypted passwords to modify DDL for password fiel
 
 Login process-
 Retrieve password from DB from the user. Read the encoding algo id {bcrypt etc}. In case of bcrypt, encrypt plaintext password from login form(using salt from DB password). Compare password from login form with password from DB. If there is a match login otherwise do not login.
+
+>> Customize the table schemas if you have custom tables
+Development process-
+1. Create our custom tables with SQL
+2. Update Spring Security configuration-
+Provide query to find user by username
+Provide query to find authorities/ roles by username
+
+So, create your table and then modify the Spring Security configuration (userDetailsManager in the security folder)
+@Bean
+public UserDetailsManager userDetailsManager(DataSource datasource) {
+                JdbcUserDetailsManager theUserDetailsManager = new JdbcUserDetailsManager(datasource);
+
+		theUserDetailsManager.setUserByUsernameQuery("select user_id, pw, active from members where user_id=?");
+
+		theUserDetailsManager.setUserByUsernameQuery("select user_id, role from roles where user_id=?");
+
+		return theUserDetailsManager
+        }
+where "?" is the parameter placeholder. This parameter value will be the username from login page.
