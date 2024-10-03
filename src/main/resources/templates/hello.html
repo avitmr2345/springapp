@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> <!-- to use Thymeleaf expressions like th:text etc. -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thymeleaf Demo with CSS</title>
+    <!-- @ symbol reference context path of your app (basically app root)-->
+    <link rel="stylesheet" th:href="@{css/demo.css}">
+</head>
+
+<body>
+    <p th:text="'The current time is: ' + ${theDate}" class="fun"></p>
+</body>
+
+</html>
