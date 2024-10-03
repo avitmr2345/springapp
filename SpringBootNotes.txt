@@ -423,3 +423,25 @@ public UserDetailsManager userDetailsManager(DataSource datasource) {
 		return theUserDetailsManager
         }
 where "?" is the parameter placeholder. This parameter value will be the username from login page.
+
+								   Spring MVC
+
+>> Spring MVC with Thymeleaf
+Thymeleaf is a Java templating engine commonly used to generate the HTML views for web apps. It is a seperate project unrelated to spring.io. You can create Java apps with Thymeleaf. No need for Spring.
+However, it is a general purpose templating engine. Can use Thymeleaf outside of web apps.
+Development Process-
+1. Add Thymeleaf to POM file
+2. Develop Spring MVC Controller
+3. Create Thymeleaf template
+
+>> Spring MVC Validation
+Java have a standard Bean Validation API. Defines a metadata model and API for entity validation. Spring Boot and Thymeleaf also support the Bean Validation API. Some validation annotations are @NotNull, @Min, @Max, @Size, @Pattern, @Future, @Past and others.
+
+Development Process-
+1. Create Customer class and add validation rules
+2. Add Controller code to show HTML form
+3. Develop HTML form and add validation support
+4. Perform validation in the Controller class
+5. Create confirmation page
+
+@InitBinder annotation works as a pre-processor. It will pre-process each web request coming to our controller and method annotated with @InitBinder is executed. @StringTrimmerEditor is defined in Spring API which removes leading, trailing whitespaces and also set to null if String only have whitespaces.
