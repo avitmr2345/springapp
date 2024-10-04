@@ -36,6 +36,9 @@ public class CustomerController {
     // stored in theBindingResult
     @PostMapping("/processForm")
     public String processForm(@Valid @ModelAttribute("customer") Customer theCustomer, BindingResult theBindingResult) {
+        // check this for custom error names
+        System.out.println("Binding Result: " + theBindingResult);
+
         if (theBindingResult.hasErrors()) {
             return "customer-form";
         } else {
