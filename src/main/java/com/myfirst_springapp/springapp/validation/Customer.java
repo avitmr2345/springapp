@@ -19,6 +19,17 @@ public class Customer {
     @Max(value = 10, message = "must be less or equal to 10")
     private Integer freePasses;
 
+    @Code(value = "AVI", message = "must start with AVI")
+    private String code;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     public Integer getFreePasses() {
         return freePasses;
     }
