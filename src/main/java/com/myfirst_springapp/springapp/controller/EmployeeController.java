@@ -3,10 +3,13 @@
 // import org.springframework.stereotype.Controller;
 // import org.springframework.ui.Model;
 // import org.springframework.web.bind.annotation.GetMapping;
+// import org.springframework.web.bind.annotation.ModelAttribute;
 // import org.springframework.web.bind.annotation.RequestMapping;
 // import com.spring_security.springboot.entity.Employee;
 // import com.spring_security.springboot.service.EmployeeService;
 // import java.util.List;
+// import org.springframework.web.bind.annotation.PostMapping;
+// import org.springframework.web.bind.annotation.RequestBody;
 
 // @Controller
 // @RequestMapping("/employees")
@@ -28,4 +31,24 @@
 
 //         return "employees/list-employees";
 //     }
+
+//     @GetMapping("/showFormForAdd")
+//     public String showFormForAdd(Model theModel) {
+
+//         // create model attribute to bind form data
+//         Employee theEmployee = new Employee();
+
+//         theModel.addAttribute("employee", theEmployee);
+
+//         return "employees/employee-form";
+//     }
+
+//     @PostMapping("/save")
+//     public String saveEmployee(@ModelAttribute("employee") Employee theEmployee) {
+
+//         employeeService.save(theEmployee);
+
+//         return "redirect:/employees/list";
+//     }
+
 // }
