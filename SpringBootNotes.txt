@@ -445,3 +445,10 @@ Development Process-
 5. Create confirmation page
 
 @InitBinder annotation works as a pre-processor. It will pre-process each web request coming to our controller and method annotated with @InitBinder is executed. @StringTrimmerEditor is defined in Spring API which removes leading, trailing whitespaces and also set to null if String only have whitespaces.
+
+								  Spring MVC CRUD
+
+Add custom method to JPA Repository
+public List<Employee> findAllByOrderByLastNameAsc();
+
+Spring Data JPA will parse the method name and looks for a specific format and pattern like findAllBy and OrderByLastNameAsc. Then creates appropriate query behind the scenes.
