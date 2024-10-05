@@ -10,6 +10,7 @@
 // import java.util.List;
 // import org.springframework.web.bind.annotation.PostMapping;
 // import org.springframework.web.bind.annotation.RequestBody;
+// import org.springframework.web.bind.annotation.RequestParam;
 
 // @Controller
 // @RequestMapping("/employees")
@@ -49,6 +50,17 @@
 //         employeeService.save(theEmployee);
 
 //         return "redirect:/employees/list";
+//     }
+
+//     @GetMapping("/showFormForUpdate")
+//     public String showFormForUpdate(@RequestParam("employeeId") int theId, Model theModel) {
+
+//         Employee thEmployee = employeeService.findById(theId);
+
+//         theModel.addAttribute("employee", thEmployee);
+
+//         return "employees/employee-form";
+
 //     }
 
 // }
