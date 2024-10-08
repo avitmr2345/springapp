@@ -18,8 +18,9 @@ public class DemoSecurityConfig {
                                                                     // processing (check user id and password). Login
                                                                     // processing URL will be handled by Spring Security
                                                                     // Filters
-                        .permitAll()); // allow everyone to see login page. No need to be logged in
-
+                        .permitAll() // allow everyone to see login page. No need to be logged in
+                )
+                .logout(logout -> logout.permitAll()); // adds logout support for default URL /logout
         return http.build();
     }
 }
