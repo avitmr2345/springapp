@@ -13,7 +13,7 @@ public class DemoSecurityController {
 
     @GetMapping("/showMyLoginPage")
     public String showMyLoginPage() {
-        return "login";
+        return "bootstrap_loginForm";
     }
 
 }
