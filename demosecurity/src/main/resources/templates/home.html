@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.com">
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -10,6 +10,12 @@
 <body>
     <h2>Welcome to the home page!</h2>
     <hr>
+    <p>
+        <!-- used the security authentication to access the username and the roles-->
+        User: <span sec:authentication="principal.username"></span>
+        <br><br>
+        Role(s): <span sec:authentication="principal.authorities"></span>
+    </p>
     <form action="#" method="post" th:action="@{/logout}">
         <input type="submit" value="Logout">
     </form>
