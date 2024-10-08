@@ -11,4 +11,9 @@ public class DemoSecurityController {
         return "home";
     }
 
+    @GetMapping("/showMyLoginPage")
+    public String showMyLoginPage() {
+        return "login";
+    }
+
 }
