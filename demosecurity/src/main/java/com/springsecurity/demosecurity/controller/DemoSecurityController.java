@@ -21,4 +21,8 @@ public class DemoSecurityController {
         return "accessDeniedPage";
     }
 
+    @GetMapping("/leaders")
+    public String showLeadersPage() {
+        return "leaders";
+    }
 }

@@ -39,7 +39,6 @@ public class DemoSecurityConfig {
         http.authorizeHttpRequests(configurer -> configurer
                 .requestMatchers(HttpMethod.GET, "/").hasRole("EMPLOYEE")
                 .requestMatchers(HttpMethod.GET, "/leaders/**").hasRole("MANAGER")
-                .requestMatchers(HttpMethod.GET, "/systems/**").hasRole("ADMIN")
                 .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/showMyLoginPage") // show our custom form at the request mapping
