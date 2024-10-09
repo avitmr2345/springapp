@@ -16,4 +16,9 @@ public class DemoSecurityController {
         return "bootstrap_loginForm";
     }
 
+    @GetMapping("/access-denied")
+    public String showAccessDeniedPage() {
+        return "accessDeniedPage";
+    }
+
 }
