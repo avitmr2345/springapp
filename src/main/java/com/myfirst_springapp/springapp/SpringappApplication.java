@@ -5,7 +5,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import com.myfirst_springapp.springapp.dao.AppDAO;
 import com.myfirst_springapp.springapp.dao.StudentDAO;
+import com.myfirst_springapp.springapp.entity.Instructor;
+import com.myfirst_springapp.springapp.entity.InstructorDetail;
 import com.myfirst_springapp.springapp.entity.Student;
 
 @SpringBootApplication
@@ -16,7 +20,7 @@ public class SpringappApplication {
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
+	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
 			// createStudent(studentDAO);
 			// readStudent(studentDAO);
@@ -25,7 +29,20 @@ public class SpringappApplication {
 			// updateStudent(studentDAO);
 			// deleteStudent(studentDAO);
 			// deleteAllStudents(studentDAO);
+			createInstructor(appDAO);
 		};
+	}
+
+	private void createInstructor(AppDAO appDAO) {
+		Instructor tempInstructor = new Instructor("Avish", "Tomar", "avish@gmail.com");
+
+		InstructorDetail tempInstructorDetail = new InstructorDetail("http://www.youtube.com", "Gaming");
+
+		tempInstructor.setInstructorDetail(tempInstructorDetail); // associate the objects
+
+		System.out.println("Saving instructor: " + tempInstructor);
+		appDAO.save(tempInstructor); // This will also save the details object because of CascadeType.ALL
+		System.out.println("Done!");
 	}
 
 	private void createStudent(StudentDAO studentDAO) {
