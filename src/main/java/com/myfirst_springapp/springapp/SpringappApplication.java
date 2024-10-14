@@ -29,7 +29,8 @@ public class SpringappApplication {
 			// updateStudent(studentDAO);
 			// deleteStudent(studentDAO);
 			// deleteAllStudents(studentDAO);
-			createInstructor(appDAO);
+			// createInstructor(appDAO);
+			findInstructor(appDAO);
 		};
 	}
 
@@ -43,6 +44,16 @@ public class SpringappApplication {
 		System.out.println("Saving instructor: " + tempInstructor);
 		appDAO.save(tempInstructor); // This will also save the details object because of CascadeType.ALL
 		System.out.println("Done!");
+	}
+
+	private void findInstructor(AppDAO appDAO) {
+		int theId = 1;
+		System.out.println("Finding instructor with id: " + theId);
+
+		Instructor tempInstructor = appDAO.findInstructorById(theId);
+
+		System.out.println(tempInstructor);
+		System.out.println(tempInstructor.getInstructorDetail());
 	}
 
 	private void createStudent(StudentDAO studentDAO) {
