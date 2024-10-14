@@ -30,7 +30,8 @@ public class SpringappApplication {
 			// deleteStudent(studentDAO);
 			// deleteAllStudents(studentDAO);
 			// createInstructor(appDAO);
-			findInstructor(appDAO);
+			// findInstructor(appDAO);
+			deleteInstructor(appDAO);
 		};
 	}
 
@@ -54,6 +55,14 @@ public class SpringappApplication {
 
 		System.out.println(tempInstructor);
 		System.out.println(tempInstructor.getInstructorDetail());
+	}
+
+	private void deleteInstructor(AppDAO appDAO) {
+		int theId = 1;
+		System.out.println("Deleting instructor with id: " + theId);
+
+		appDAO.deleteInstructorById(theId);
+		System.out.println("Done!");
 	}
 
 	private void createStudent(StudentDAO studentDAO) {
