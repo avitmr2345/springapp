@@ -32,7 +32,8 @@ public class SpringappApplication {
 			// createInstructor(appDAO);
 			// findInstructor(appDAO);
 			// deleteInstructor(appDAO);
-			findInstructorDetail(appDAO);
+			// findInstructorDetail(appDAO);
+			deleteInstructorDetail(appDAO);
 		};
 	}
 
@@ -74,6 +75,14 @@ public class SpringappApplication {
 
 		System.out.println(tempInstructorDetail);
 		System.out.println(tempInstructorDetail.getInstructor());
+	}
+
+	private void deleteInstructorDetail(AppDAO appDAO) {
+		int theId = 2;
+		System.out.println("Deleting instructor detail id: " + theId);
+
+		appDAO.deleteInstructorById(theId);
+		System.out.println("Done!");
 	}
 
 	private void createStudent(StudentDAO studentDAO) {
