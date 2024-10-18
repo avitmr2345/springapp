@@ -27,7 +27,8 @@ public class InstructorDetail {
     // mappedBy tells hibernate to look at the instructorDetail property in
     // Instructor class and use information from the Instructor class @JoinColumn to
     // help find associated instructor
-    @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "instructorDetail", cascade = { CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH,
+            CascadeType.PERSIST })
     private Instructor instructor;
 
     public InstructorDetail() {

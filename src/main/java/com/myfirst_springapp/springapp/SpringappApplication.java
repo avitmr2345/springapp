@@ -5,7 +5,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
 import com.myfirst_springapp.springapp.dao.AppDAO;
 import com.myfirst_springapp.springapp.dao.StudentDAO;
 import com.myfirst_springapp.springapp.entity.Instructor;
@@ -78,7 +77,7 @@ public class SpringappApplication {
 	}
 
 	private void deleteInstructorDetail(AppDAO appDAO) {
-		int theId = 2;
+		int theId = 7;
 		System.out.println("Deleting instructor detail id: " + theId);
 
 		appDAO.deleteInstructorById(theId);
