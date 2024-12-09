@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import com.myfirst_springapp.springapp.dao.AppDAO;
 import com.myfirst_springapp.springapp.dao.StudentDAO;
+import com.myfirst_springapp.springapp.entity.Course;
 import com.myfirst_springapp.springapp.entity.Instructor;
 import com.myfirst_springapp.springapp.entity.InstructorDetail;
 import com.myfirst_springapp.springapp.entity.Student;
@@ -32,7 +33,8 @@ public class SpringappApplication {
 			// findInstructor(appDAO);
 			// deleteInstructor(appDAO);
 			// findInstructorDetail(appDAO);
-			deleteInstructorDetail(appDAO);
+			// deleteInstructorDetail(appDAO);
+			createInstructorWithCourses(appDAO);
 		};
 	}
 
@@ -138,5 +140,25 @@ public class SpringappApplication {
 		System.out.println("Deleting all students");
 		int numOfRowsDeleted = studentDAO.deleteAll();
 		System.out.println("Delete row count: " + numOfRowsDeleted);
+	}
+
+	private void createInstructorWithCourses(AppDAO appDAO) {
+		Instructor tempInstructor = new Instructor("Avi", "T", "avish@gmail.com");
+
+		InstructorDetail tempInstructorDetail = new InstructorDetail("http://www.youtube.com", "Gaming");
+
+		tempInstructor.setInstructorDetail(tempInstructorDetail);
+
+		Course tempCourse1 = new Course("Guitar - The Ultimate Guide");
+		Course tempCourse2 = new Course("The Linux Course");
+
+		tempInstructor.add(tempCourse1);
+		tempInstructor.add(tempCourse2);
+
+		// this will also save the courses because of CascadeType.PERSIST
+		System.out.println("Saving instructor: " + tempInstructor);
+		System.out.println("The courses: " + tempInstructor.getCourses());
+		appDAO.save(tempInstructor);
+		System.out.println("Done!");
 	}
 }
