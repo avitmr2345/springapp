@@ -34,7 +34,8 @@ public class SpringappApplication {
 			// deleteInstructor(appDAO);
 			// findInstructorDetail(appDAO);
 			// deleteInstructorDetail(appDAO);
-			createInstructorWithCourses(appDAO);
+			// createInstructorWithCourses(appDAO);
+			findInstructorWithCourses(appDAO);
 		};
 	}
 
@@ -159,6 +160,19 @@ public class SpringappApplication {
 		System.out.println("Saving instructor: " + tempInstructor);
 		System.out.println("The courses: " + tempInstructor.getCourses());
 		appDAO.save(tempInstructor);
+		System.out.println("Done!");
+	}
+
+	private void findInstructorWithCourses(AppDAO appDAO) {
+		int theId = 2;
+		System.out.println("Finding instructor id: " + theId);
+
+		Instructor tempInstructor = appDAO.findInstructorById(theId);// it only loads the instructor without courses bcz
+																		// they are defaultly lazy loaded for one-many.
+																		// So, we change it to EAGER
+
+		System.out.println("tempInstructor: " + tempInstructor);
+		System.out.println("The associated courses are: " + tempInstructor.getCourses());
 		System.out.println("Done!");
 	}
 }
