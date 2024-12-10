@@ -1,5 +1,7 @@
 package com.myfirst_springapp.springapp.dao;
 
+import java.util.List;
+import com.myfirst_springapp.springapp.entity.Course;
 import com.myfirst_springapp.springapp.entity.Instructor;
 import com.myfirst_springapp.springapp.entity.InstructorDetail;
 
@@ -13,4 +15,6 @@ public interface AppDAO {
     InstructorDetail findInstructorDetailById(int theId);
 
     void deleteInstructorDetailById(int theId);
+
+    List<Course> findCourseByInstructorId(int theId);
 }

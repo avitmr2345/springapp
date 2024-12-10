@@ -35,7 +35,8 @@ public class SpringappApplication {
 			// findInstructorDetail(appDAO);
 			// deleteInstructorDetail(appDAO);
 			// createInstructorWithCourses(appDAO);
-			findInstructorWithCourses(appDAO);
+			// findInstructorWithCourses(appDAO);
+			findCoursesForInstructor(appDAO);
 		};
 	}
 
@@ -173,6 +174,23 @@ public class SpringappApplication {
 
 		System.out.println("tempInstructor: " + tempInstructor);
 		System.out.println("The associated courses are: " + tempInstructor.getCourses());
+		System.out.println("Done!");
+	}
+
+	private void findCoursesForInstructor(AppDAO appDAO) {
+		// lazy loading is preferred for faster response of your app
+		int theId = 2;
+		System.out.println("Finding instructor id: " + theId);
+
+		Instructor tempInstructor = appDAO.findInstructorById(theId);
+
+		System.out.println("tempInstructor: " + tempInstructor);
+
+		System.out.println("Finding courses for instructor id: " + theId);
+		List<Course> courses = appDAO.findCourseByInstructorId(theId);
+
+		tempInstructor.setCourses(courses);
+		System.out.println("The associated courses: " + tempInstructor.getCourses());
 		System.out.println("Done!");
 	}
 }

@@ -38,7 +38,7 @@ public class Instructor {
     private InstructorDetail instructorDetail;
 
     // Default fething behaviour 1-1 & M-1 (EAGER) && 1-M & M-M (LAZY)
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "instructor", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "instructor", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH,
             CascadeType.REFRESH })
     private List<Course> courses;
