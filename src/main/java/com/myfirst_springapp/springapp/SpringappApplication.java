@@ -37,7 +37,8 @@ public class SpringappApplication {
 			// createInstructorWithCourses(appDAO);
 			// findInstructorWithCourses(appDAO);
 			// findCoursesForInstructor(appDAO);
-			findInstructorWithCoursesJoinFetch(appDAO);
+			// findInstructorWithCoursesJoinFetch(appDAO);
+			updateInstructor(appDAO);
 		};
 	}
 
@@ -203,6 +204,18 @@ public class SpringappApplication {
 
 		System.out.println("tempInstructor: " + tempInstructor);
 		System.out.println("The associated courses: " + tempInstructor.getCourses());
+		System.out.println("Done!");
+	}
+
+	private void updateInstructor(AppDAO appDAO) {
+		int theId = 2;
+		System.out.println("Finding instructor id: " + theId);
+		Instructor tempInstructor = appDAO.findInstructorById(theId);
+
+		System.out.println("Updating instructor id: " + theId);
+		tempInstructor.setLastName("Tomar");
+
+		appDAO.update(tempInstructor);
 		System.out.println("Done!");
 	}
 }
