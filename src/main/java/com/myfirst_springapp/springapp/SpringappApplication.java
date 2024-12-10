@@ -36,7 +36,8 @@ public class SpringappApplication {
 			// deleteInstructorDetail(appDAO);
 			// createInstructorWithCourses(appDAO);
 			// findInstructorWithCourses(appDAO);
-			findCoursesForInstructor(appDAO);
+			// findCoursesForInstructor(appDAO);
+			findInstructorWithCoursesJoinFetch(appDAO);
 		};
 	}
 
@@ -190,6 +191,17 @@ public class SpringappApplication {
 		List<Course> courses = appDAO.findCourseByInstructorId(theId);
 
 		tempInstructor.setCourses(courses);
+		System.out.println("The associated courses: " + tempInstructor.getCourses());
+		System.out.println("Done!");
+	}
+
+	private void findInstructorWithCoursesJoinFetch(AppDAO appDAO) {
+		int theId = 2;
+		System.out.println("Finding instructor id: " + theId);
+
+		Instructor tempInstructor = appDAO.findInstructorByIdJoinFetch(theId);
+
+		System.out.println("tempInstructor: " + tempInstructor);
 		System.out.println("The associated courses: " + tempInstructor.getCourses());
 		System.out.println("Done!");
 	}
