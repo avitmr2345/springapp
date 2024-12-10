@@ -42,7 +42,8 @@ public class SpringappApplication {
 			// updateInstructor(appDAO);
 			// updateCourse(appDAO);
 			// deleteCourse(appDAO);
-			createCourseAndReviews(appDAO);
+			// createCourseAndReviews(appDAO);
+			retrieveCourseAndReviews(appDAO);
 		};
 	}
 
@@ -255,6 +256,15 @@ public class SpringappApplication {
 		System.out.println(tempCourse.getReviews());
 
 		appDAO.save(tempCourse);
+		System.out.println("Done!");
+	}
+
+	private void retrieveCourseAndReviews(AppDAO appDAO){
+		int theId = 20;
+		Course tempCourse = appDAO.findCourseAndReviewsByCourseId(theId);
+
+		System.out.println(tempCourse);
+		System.out.println(tempCourse.getReviews());
 		System.out.println("Done!");
 	}
 }
