@@ -10,6 +10,7 @@ import com.myfirst_springapp.springapp.dao.StudentDAO;
 import com.myfirst_springapp.springapp.entity.Course;
 import com.myfirst_springapp.springapp.entity.Instructor;
 import com.myfirst_springapp.springapp.entity.InstructorDetail;
+import com.myfirst_springapp.springapp.entity.Review;
 import com.myfirst_springapp.springapp.entity.Student;
 
 @SpringBootApplication
@@ -40,7 +41,8 @@ public class SpringappApplication {
 			// findInstructorWithCoursesJoinFetch(appDAO);
 			// updateInstructor(appDAO);
 			// updateCourse(appDAO);
-			deleteCourse(appDAO);
+			// deleteCourse(appDAO);
+			createCourseAndReviews(appDAO);
 		};
 	}
 
@@ -238,6 +240,21 @@ public class SpringappApplication {
 		System.out.println("Deleting course id: " + theId);
 
 		appDAO.deleteCourseById(theId);
+		System.out.println("Done!");
+	}
+
+	private void createCourseAndReviews(AppDAO appDAO) {
+		Course tempCourse = new Course("New Course on Java");
+
+		tempCourse.addReview(new Review("Great course"));
+		tempCourse.addReview(new Review("Really great course"));
+		tempCourse.addReview(new Review("Amazing course"));
+		tempCourse.addReview(new Review("Waste of money course"));
+
+		System.out.println("Saving the course: " + tempCourse);
+		System.out.println(tempCourse.getReviews());
+
+		appDAO.save(tempCourse);
 		System.out.println("Done!");
 	}
 }
