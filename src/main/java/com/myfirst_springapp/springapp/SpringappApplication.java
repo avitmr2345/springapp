@@ -38,7 +38,8 @@ public class SpringappApplication {
 			// findInstructorWithCourses(appDAO);
 			// findCoursesForInstructor(appDAO);
 			// findInstructorWithCoursesJoinFetch(appDAO);
-			updateInstructor(appDAO);
+			// updateInstructor(appDAO);
+			updateCourse(appDAO);
 		};
 	}
 
@@ -216,6 +217,18 @@ public class SpringappApplication {
 		tempInstructor.setLastName("Tomar");
 
 		appDAO.update(tempInstructor);
+		System.out.println("Done!");
+	}
+
+	private void updateCourse(AppDAO appDAO) {
+		int theId = 12;
+		System.out.println("Finding course id: " + theId);
+		Course tempCourse = appDAO.findCourseById(theId);
+
+		System.out.println("Update course id: " + theId);
+		tempCourse.setTitle("MERN Stack Course");
+
+		appDAO.update(tempCourse);
 		System.out.println("Done!");
 	}
 }
