@@ -31,7 +31,7 @@ public class SpringappApplication {
 			// deleteAllStudents(studentDAO);
 			// createInstructor(appDAO);
 			// findInstructor(appDAO);
-			deleteInstructor(appDAO);
+			// deleteInstructor(appDAO);
 			// findInstructorDetail(appDAO);
 			// deleteInstructorDetail(appDAO);
 			// createInstructorWithCourses(appDAO);
@@ -40,6 +40,7 @@ public class SpringappApplication {
 			// findInstructorWithCoursesJoinFetch(appDAO);
 			// updateInstructor(appDAO);
 			// updateCourse(appDAO);
+			deleteCourse(appDAO);
 		};
 	}
 
@@ -229,6 +230,14 @@ public class SpringappApplication {
 		tempCourse.setTitle("MERN Stack Course");
 
 		appDAO.update(tempCourse);
+		System.out.println("Done!");
+	}
+
+	private void deleteCourse(AppDAO appDAO) {
+		int theId = 18;
+		System.out.println("Deleting course id: " + theId);
+
+		appDAO.deleteCourseById(theId);
 		System.out.println("Done!");
 	}
 }
