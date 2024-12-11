@@ -42,13 +42,14 @@ public class SpringappApplication {
 			// updateInstructor(appDAO);
 			// updateCourse(appDAO);
 			// deleteCourse(appDAO);
+			deleteStudent(appDAO);
 			// createCourseAndReviews(appDAO);
 			// retrieveCourseAndReviews(appDAO);
 			// deleteCourseAndReviews(appDAO);
 			// createCourseAndStudents(appDAO);
 			// findCourseAndStudents(appDAO);
 			// findStudentAndCourses(appDAO);
-			addMoreCoursesForStudent(appDAO);
+			// addMoreCoursesForStudent(appDAO);
 		};
 	}
 
@@ -246,6 +247,14 @@ public class SpringappApplication {
 		System.out.println("Deleting course id: " + theId);
 
 		appDAO.deleteCourseById(theId);
+		System.out.println("Done!");
+	}
+
+	private void deleteStudent(AppDAO appDAO) {
+		int theId = 1;
+		System.out.println("Deleting student id: " + theId);
+
+		appDAO.deleteStudentById(theId);
 		System.out.println("Done!");
 	}
 
