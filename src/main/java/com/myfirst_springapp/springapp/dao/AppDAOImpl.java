@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.myfirst_springapp.springapp.entity.Course;
 import com.myfirst_springapp.springapp.entity.Instructor;
 import com.myfirst_springapp.springapp.entity.InstructorDetail;
+import com.myfirst_springapp.springapp.entity.Student;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -141,5 +142,18 @@ public class AppDAOImpl implements AppDAO {
 
         Course course = query.getSingleResult();
         return course;
+    }
+
+    @Override
+    public Student findStudentAndCoursesByStudentId(int theId) {
+        TypedQuery<Student> query = entityManager
+                .createQuery("select s from Student s " + "JOIN FETCH s.courses " + "where s.id = :data",
+                        Student.class);
+
+        query.setParameter("data", theId);
+
+        Student student = query.getSingleResult();
+        return student;
+
     }
 }

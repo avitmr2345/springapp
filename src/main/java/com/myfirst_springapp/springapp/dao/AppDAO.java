@@ -4,6 +4,7 @@ import java.util.List;
 import com.myfirst_springapp.springapp.entity.Course;
 import com.myfirst_springapp.springapp.entity.Instructor;
 import com.myfirst_springapp.springapp.entity.InstructorDetail;
+import com.myfirst_springapp.springapp.entity.Student;
 
 public interface AppDAO {
     void save(Instructor theInstructor);
@@ -33,4 +34,6 @@ public interface AppDAO {
     Course findCourseAndReviewsByCourseId(int theId);
 
     Course findCourseAndStudentsByCourseId(int theId);
+
+    Student findStudentAndCoursesByStudentId(int theId);
 }
