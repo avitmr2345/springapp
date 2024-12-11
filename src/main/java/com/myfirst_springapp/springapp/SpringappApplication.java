@@ -47,7 +47,8 @@ public class SpringappApplication {
 			// deleteCourseAndReviews(appDAO);
 			// createCourseAndStudents(appDAO);
 			// findCourseAndStudents(appDAO);
-			findStudentAndCourses(appDAO);
+			// findStudentAndCourses(appDAO);
+			addMoreCoursesForStudent(appDAO);
 		};
 	}
 
@@ -309,5 +310,19 @@ public class SpringappApplication {
 
 		System.out.println(tempStudent);
 		System.out.println(tempStudent.getCourses());
+	}
+
+	private void addMoreCoursesForStudent(AppDAO appDAO) {
+		int theId = 2;
+		Student tempStudent = appDAO.findStudentAndCoursesByStudentId(theId);
+
+		Course tempCourse = new Course("New course added");
+
+		tempStudent.addCourse(tempCourse);
+
+		System.out.println("Updating student: " + tempStudent);
+
+		appDAO.update(tempStudent);
+		System.out.println("Done!");
 	}
 }
