@@ -44,7 +44,8 @@ public class SpringappApplication {
 			// deleteCourse(appDAO);
 			// createCourseAndReviews(appDAO);
 			// retrieveCourseAndReviews(appDAO);
-			deleteCourseAndReviews(appDAO);
+			// deleteCourseAndReviews(appDAO);
+			createCourseAndStudents(appDAO);
 		};
 	}
 
@@ -274,6 +275,21 @@ public class SpringappApplication {
 		System.out.println("Deleting course id: " + theId);
 
 		appDAO.deleteCourseById(theId);
+		System.out.println("Done!");
+	}
+
+	private void createCourseAndStudents(AppDAO appDAO) {
+		Course tempCourse = new Course("Pacman - How To Score One Million Points");
+
+		Student student1 = new Student("Avi", "Tomar", "avis@gmail.com");
+		Student student2 = new Student("A", "T", "avi@gmail.com");
+
+		tempCourse.addStudent(student1);
+		tempCourse.addStudent(student2);
+
+		System.out.println("Saving the course: " + tempCourse);
+		System.out.println("Associated students: " + tempCourse.getStudents());
+		appDAO.save(tempCourse);
 		System.out.println("Done!");
 	}
 }
