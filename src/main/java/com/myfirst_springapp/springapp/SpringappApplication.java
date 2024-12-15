@@ -20,8 +20,8 @@ public class SpringappApplication {
 		SpringApplication.run(SpringappApplication.class, args);
 	}
 
-	@Bean
-	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
+    @Bean
+    CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
 			// createStudent(studentDAO);
 			// readStudent(studentDAO);

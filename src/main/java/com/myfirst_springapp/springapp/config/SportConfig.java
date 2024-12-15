@@ -9,7 +9,7 @@ import com.myfirst_springapp.springapp.SwimCoach;
 public class SportConfig {
 
     @Bean
-    public Coach swimCoach() {
+    Coach swimCoach() {
         return new SwimCoach();
     }
 }
