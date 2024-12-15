@@ -452,3 +452,22 @@ Add custom method to JPA Repository
 public List<Employee> findAllByOrderByLastNameAsc();
 
 Spring Data JPA will parse the method name and looks for a specific format and pattern like findAllBy and OrderByLastNameAsc. Then creates appropriate query behind the scenes.
+
+							   Aspect-Oriented Programming
+
+>> Business Problem
+Suppose we have to add logging statements before the start of our DAO method and then we have to add security code to make sure user is authorized before running DAO methods. Then boss says add these to all our layers i.e. Controller, Service and DAO. So, in order to do this we have to add logging and security to all these layers. And after that he says replicate it accross entire system.
+If we want to change the logging code or security code we have to update all layers or classes.
+
+The solution is AOP i.e. Programming technique based on concept of an Aspect. Aspect encapsulates cross-cutting logic or cross-cutting concerns. So, its like infrastructure code that all application will need. Aspect/class can be reused at multiple locations like between Account Controller and Account Service , Account Service and Account DAO etc. and many other Controllers, Services and DAO's.
+
+Benefits of AOP:
+1. Code for Aspect is defined in a single class which promotes code reuse and easier to change.
+2. Reduces code complexity.
+3. Configurable i.e. apply aspects selectively to different parts of app which doesn't need to change main app code.
+
+AOP use cases:
+Most common - Logging, security, transactions
+Audit logging - who, what, when, where for a method that's called
+Exception handling to log exception and notify team via SMS/email
+API Management like how many times has a method called by user and analytics like what are peak times, average load and who is top user
