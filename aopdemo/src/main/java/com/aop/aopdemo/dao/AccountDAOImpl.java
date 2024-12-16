@@ -7,7 +7,7 @@ import com.aop.aopdemo.Account;
 public class AccountDAOImpl implements AccountDAO {
 
     @Override
-    public void addAccount(Account theAccount) {
+    public void addAccount(Account theAccount, boolean vipFlag) {
         System.out.println(getClass() + ": Adding an account");
     }
 
