@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.aop.aopdemo.dao.AccountDAO;
+import com.aop.aopdemo.dao.MembershipDAO;
 
 @SpringBootApplication
 public class AopdemoApplication {
@@ -15,15 +16,17 @@ public class AopdemoApplication {
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner(AccountDAO theAccountDAO) { // SpringBoot automatically inject the
-																			// dependency because of @Bean annotation.
+	public CommandLineRunner commandLineRunner(AccountDAO theAccountDAO, MembershipDAO theMembershipDAO) {
+		// SpringBoot automatically inject the dependency because of @Bean annotation.
 		return runner -> {
-			demoBeforeAdvice(theAccountDAO);
+			demoBeforeAdvice(theAccountDAO, theMembershipDAO);
 		};
 	}
 
-	private void demoBeforeAdvice(AccountDAO theAccountDAO) {
+	private void demoBeforeAdvice(AccountDAO theAccountDAO, MembershipDAO theMembershipDAO) {
 		theAccountDAO.addAccount();
+
+		theMembershipDAO.addAccount();
 	}
 
 }
