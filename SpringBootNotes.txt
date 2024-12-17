@@ -573,7 +573,30 @@ Eg. for Matching all method in a given package
 @Before("execution(*(return type) com.aop.aopdemo.dao(package).*(class).*(method)(..))")
 
 
+>> Pointcut Declaration
+We use this to reuse a pointcut expression to apply to multiple advices.
+Eg. @Pointcut("execution(* com.aop.aopdemo.dao.*.*(..))")
+    private void forDAOPackage() {}		// the method name is to reference this Pointcut
 
+>> Combining Pointcuts
+To apply multiple pointcut expressions to single advice we combine pointcut expressions using &&, ||, ! etc.
+Eg. All methods	in a package except getter/setter methods
+@Pointcut("execution(* com.aop.aopdemo.dao.*.*(..))")
+    private void forDAOPackage() {};
 
+@Pointcut("execution(* com.aop.aopdemo.dao.*.get*(..))")
+    private void getter() {};
 
+@Pointcut("execution(* com.aop.aopdemo.dao.*.set*(..))")
+    private void setter() {};
 
+@Pointcut("forDAOPackage() && !(getter() || setter())")
+    private void forDAOPackageNoGetterSetter() {};	// use this pointcut in advice @Before("forDAOPackageNoGetterSetter()")
+
+>> Ordering Aspects
+To control order-
+Place advices in seperate Aspects
+Control order on Aspects using the @Order annotation
+Eg. @Order(1)  // Lower number have high precedence. Range: Integer.MIN_VALUE to Integer.MAX_VALUE and doesn't need to be consecutive. 
+    public class MyAspect {
+    };
