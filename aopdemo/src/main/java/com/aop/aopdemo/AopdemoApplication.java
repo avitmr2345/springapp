@@ -28,6 +28,7 @@ public class AopdemoApplication {
 		theAccountDAO.addAccount(myAccount, true);
 
 		theMembershipDAO.addAccount();
+		theMembershipDAO.goToSleep();
 	}
 
 }
