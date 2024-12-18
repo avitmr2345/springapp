@@ -1,5 +1,7 @@
 package com.aop.aopdemo;
 
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,7 +21,8 @@ public class AopdemoApplication {
 	public CommandLineRunner commandLineRunner(AccountDAO theAccountDAO, MembershipDAO theMembershipDAO) {
 		// SpringBoot automatically inject the dependency because of @Bean annotation.
 		return runner -> {
-			demoBeforeAdvice(theAccountDAO, theMembershipDAO);
+			// demoBeforeAdvice(theAccountDAO, theMembershipDAO);
+			demoAfterReturningAdvice(theAccountDAO);
 		};
 	}
 
@@ -29,6 +32,13 @@ public class AopdemoApplication {
 
 		theMembershipDAO.addAccount();
 		theMembershipDAO.goToSleep();
+	}
+
+	private void demoAfterReturningAdvice(AccountDAO theAccountDAO) {
+		List<Account> theAccounts = theAccountDAO.findAccounts();
+
+		System.out.println("Main program: demoAfterReturningAdvice");
+		System.out.println(theAccounts);
 	}
 
 }
