@@ -19,5 +19,14 @@ public class MyNewAspect {
 
         System.out.println("Result is: " + result);
         System.out.println();
+
+        // post process data before returning to caller and format the data
+        for (Account tempAccount : result) {
+            String theUpperName = tempAccount.getName().toUpperCase();
+            String theUpperLevel = tempAccount.getLevel().toUpperCase();
+
+            tempAccount.setName(theUpperName);
+            tempAccount.setLevel(theUpperLevel);
+        }
     }
 }

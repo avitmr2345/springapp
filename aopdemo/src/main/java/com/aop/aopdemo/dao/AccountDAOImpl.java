@@ -15,8 +15,8 @@ public class AccountDAOImpl implements AccountDAO {
     public List<Account> findAccounts() {
         List<Account> myAccounts = new ArrayList<>();
 
-        Account temp1 = new Account("Avish", "Tomar");
-        Account temp2 = new Account("A", "T");
+        Account temp1 = new Account("Avish", "Gold");
+        Account temp2 = new Account("A", "Silver");
 
         myAccounts.add(temp1);
         myAccounts.add(temp2);
