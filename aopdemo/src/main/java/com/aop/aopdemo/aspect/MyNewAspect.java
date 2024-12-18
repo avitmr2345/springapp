@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
@@ -28,5 +29,13 @@ public class MyNewAspect {
             tempAccount.setName(theUpperName);
             tempAccount.setLevel(theUpperLevel);
         }
+    }
+
+    @AfterThrowing(pointcut = "execution(* com.aop.aopdemo.dao.AccountDAO.findAccounts(..))", throwing = "theExc")
+    public void afterThrowingFindAccountAdvice(JoinPoint theJoinPoint, Throwable theExc) {
+        String method = theJoinPoint.getSignature().toShortString();
+        
+        System.out.println(">> Executing @AfterThrowing on method: " + method);
+        System.out.println(">> The exception is: " + theExc);
     }
 }
