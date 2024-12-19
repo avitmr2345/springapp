@@ -3,9 +3,11 @@ package com.aop.aopdemo.aspect;
 import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
@@ -46,5 +48,25 @@ public class MyNewAspect {
         String method = theJoinPoint.getSignature().toShortString();
 
         System.out.println(">> Executing @After (finally) on method: " + method);
+    }
+
+    @Around("execution(* com.aop.aopdemo.service.*.getFortune(..))")
+    public Object aroundGetFortune(ProceedingJoinPoint theProceedingJoinPoint) throws Throwable {
+        String method = theProceedingJoinPoint.getSignature().toShortString();
+        System.out.println(">> Executing @Around on method: " + method);
+
+        // get begin timestamp
+        long begin = System.currentTimeMillis();
+
+        // executing the target method using the handle i.e. theProceedingJoinPoint
+        Object result = theProceedingJoinPoint.proceed();
+
+        // get end timestamp
+        long end = System.currentTimeMillis();
+
+        long duration = end - begin;
+        System.out.println(">> Duration: " + duration / 1000.0 + "seconds");
+
+        return result;
     }
 }

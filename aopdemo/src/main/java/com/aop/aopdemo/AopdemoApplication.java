@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 
 import com.aop.aopdemo.dao.AccountDAO;
 import com.aop.aopdemo.dao.MembershipDAO;
+import com.aop.aopdemo.service.TrafficFortuneService;
 
 @SpringBootApplication
 public class AopdemoApplication {
@@ -17,13 +18,15 @@ public class AopdemoApplication {
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner(AccountDAO theAccountDAO, MembershipDAO theMembershipDAO) {
+	public CommandLineRunner commandLineRunner(AccountDAO theAccountDAO, MembershipDAO theMembershipDAO,
+			TrafficFortuneService theTrafficFortuneService) {
 		// SpringBoot automatically inject the dependency because of @Bean annotation.
 		return runner -> {
 			// demoBeforeAdvice(theAccountDAO, theMembershipDAO);
 			// demoAfterReturningAdvice(theAccountDAO);
 			// demoAfterThrowingAdvice(theAccountDAO);
-			demoAfterAdvice(theAccountDAO);
+			// demoAfterAdvice(theAccountDAO);
+			demoAroundAdvice(theTrafficFortuneService);
 		};
 	}
 
@@ -68,5 +71,15 @@ public class AopdemoApplication {
 
 		System.out.println("Main program: demoAfterAdvice");
 		System.out.println(theAccounts);
+	}
+
+	private void demoAroundAdvice(TrafficFortuneService theTrafficFortuneService) {
+		System.out.println("Main program: demoAroundService");
+		System.out.println("Calling getFortune()");
+
+		String data = theTrafficFortuneService.getFortune();
+		System.out.println("My fortune is: " + data);
+
+		System.out.println("Finished");
 	}
 }
