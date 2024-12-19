@@ -600,3 +600,29 @@ Control order on Aspects using the @Order annotation
 Eg. @Order(1)  // Lower number have high precedence. Range: Integer.MIN_VALUE to Integer.MAX_VALUE and doesn't need to be consecutive. 
     public class MyAspect {
     };
+
+>> @AfterThrowing Advice
+Sequence Diagram -
+
+		Main App ---findAccounts()--> AOP Proxy ---findAccounts()--> AccountDAO ---exception--> @AfterThrowing Advice
+			 <----exception------           <--------------------exception-----------------
+
+Main app makes a call find accounts, goes into our AOP Proxy, which delegates that call to the AccountDAO find accounts. If there is an exception it'll call the after throwing advice. So we post process or just read the advice. After that the exception is still propogated back to AOP Proxy. From AOP Proxy the exception is propogated back to main application.
+
+Exception Propogation -
+At this point, we are only intercepting the exception (reading it). However, the exception is still propogated to calling program.
+If you want to stop the exception propogation then use @Around advice.
+
+>> Around Advice
+Sequence Diagram -
+
+		Main App ---getFortune()--> AOP Proxy ---getFortune()--> @Around Advice ---call target method--> Fortune Service
+           		 <-----result------           <-----result------                <---------result--------
+
+When using @Around Advice you will get a proceeding join point which is a handle to target method. Your code can use the proceeding join point to execute target method.
+
+Handle Exception -
+For an exception thrown from proceeding join point you can handle/ swallow/ stop the exception. Or you can simply rethrow the exception.
+
+Eg. When the target method makes an exception then we can handle the exception in @Around advice. The main program will never know exception happened.
+In case of we just log the exception in @Around advice and then rethrow the expection back to proxy and then back to the main application.
