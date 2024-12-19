@@ -65,7 +65,7 @@ public class MyNewAspect {
             result = theProceedingJoinPoint.proceed();
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            result = "Major accident! But no worries, your private AOP helicopter is on the way!";
+            throw e;
         }
 
         // get end timestamp
