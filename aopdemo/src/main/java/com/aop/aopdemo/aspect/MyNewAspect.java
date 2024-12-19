@@ -59,7 +59,14 @@ public class MyNewAspect {
         long begin = System.currentTimeMillis();
 
         // executing the target method using the handle i.e. theProceedingJoinPoint
-        Object result = theProceedingJoinPoint.proceed();
+        Object result = null;
+
+        try {
+            result = theProceedingJoinPoint.proceed();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            result = "Major accident! But no worries, your private AOP helicopter is on the way!";
+        }
 
         // get end timestamp
         long end = System.currentTimeMillis();
