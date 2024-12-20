@@ -9,7 +9,6 @@ import com.spring_security.springboot.entity.Employee;
 import com.spring_security.springboot.service.EmployeeService;
 import java.util.List;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
