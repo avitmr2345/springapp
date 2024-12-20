@@ -453,6 +453,13 @@ public List<Employee> findAllByOrderByLastNameAsc();
 
 Spring Data JPA will parse the method name and looks for a specific format and pattern like findAllBy and OrderByLastNameAsc. Then creates appropriate query behind the scenes.
 
+Big picture of Spring MVC CRUD app -
+
+		Web Browser -----> Employee Controller <-----> Employee Service <-----> Employee DAO <-----> Database
+					   |
+					   |
+			    <-----    Thymeleaf Page
+
 							   Aspect-Oriented Programming
 
 >> Business Problem
