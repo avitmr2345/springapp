@@ -65,8 +65,6 @@ public class AppDAOImpl implements AppDAO {
             }
             entityManager.remove(tempInstructorDetail);
         }
-
-        entityManager.remove(tempInstructorDetail);
     }
 
     @Override

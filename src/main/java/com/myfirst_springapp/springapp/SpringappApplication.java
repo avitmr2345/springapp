@@ -42,7 +42,7 @@ public class SpringappApplication {
 			// updateInstructor(appDAO);
 			// updateCourse(appDAO);
 			// deleteCourse(appDAO);
-			deleteStudent(appDAO);
+			// deleteStudent(appDAO);
 			// createCourseAndReviews(appDAO);
 			// retrieveCourseAndReviews(appDAO);
 			// deleteCourseAndReviews(appDAO);
